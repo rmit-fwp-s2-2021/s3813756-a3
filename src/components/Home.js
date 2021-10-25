@@ -34,8 +34,7 @@ function Home() {
   }, [message]);
 
 
-
-
+  // Set button style
   const button = {
     borderRadius: "30px",
     width: "200px",
@@ -45,16 +44,21 @@ function Home() {
     backgroundColor: "#d9d9d9"
 
   }
+
+  // set style for input field
   const style = {
     border: 0,
     outline: 0,
     background: "transparent",
     borderBottom: "1px solid lightgrey"
   };
+
+  // set background color 
   const bg = {
     backgroundColor: "#d9d9d9"
   };
 
+  // handle when user confirm their booking
   function handleSubmit() {
     createReservation(fields.name, fields.meal, fields.calendar, fields.clock, fields.guest, fields.heart, fields.text);
     setMessage("Success");
@@ -71,6 +75,7 @@ function Home() {
     setFields(temp);
   }
 
+  // handle validation
   const handleValidation = (event) => {
     event.preventDefault();
     if (!/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/.test(fields.calendar))
@@ -82,6 +87,7 @@ function Home() {
     else if (fields.text.length > 600)
       setReqErrorMessage("Special requests cannot exceed more than 600 characters.")
     else {
+      // set all error message to null and call confirmBooking function
       setDateErrorMessage(null);
       setTimeErrorMessage(null);
       setGuestErrorMessage(null);
@@ -96,6 +102,7 @@ function Home() {
     setFields({ ...fields, [event.target.name]: event.target.value });
   }
 
+  // confirm booking function using modal
   const confirmBooking = () => {
     confirmAlert({
       customUI: ({ onClose }) => {
