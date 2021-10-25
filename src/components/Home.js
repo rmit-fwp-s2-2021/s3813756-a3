@@ -10,7 +10,6 @@ import { FaPaperPlane } from "react-icons/fa";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { createReservation } from "../data/repository";
-import { useHistory } from "react-router-dom";
 
 
 
@@ -20,7 +19,6 @@ function Home() {
   const [timeErrorMessage, setTimeErrorMessage] = useState(null);
   const [guestErrorMessage, setGuestErrorMessage] = useState(null);
   const [reqErrorMessage, setReqErrorMessage] = useState(null);
-  const history = useHistory();
 
   const [message, setMessage] = useState(null);
 
@@ -60,7 +58,17 @@ function Home() {
   function handleSubmit() {
     createReservation(fields.name, fields.meal, fields.calendar, fields.clock, fields.guest, fields.heart, fields.text);
     setMessage("Success");
-    history.push("/");
+
+    // Reset All Field
+    const temp = {...fields};
+    temp.name = "";
+    temp.meal = "";
+    temp.calendar = "";
+    temp.clock = "";
+    temp.guest = "";
+    temp.heart = "";
+    temp.text = "";
+    setFields(temp);
   }
 
   const handleValidation = (event) => {
