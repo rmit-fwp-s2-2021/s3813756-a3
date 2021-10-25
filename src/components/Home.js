@@ -58,11 +58,9 @@ function Home() {
   };
 
   function handleSubmit() {
-
     createReservation(fields.name, fields.meal, fields.calendar, fields.clock, fields.guest, fields.heart, fields.text);
     setMessage("Success");
     history.push("/");
-    setMessage(null);
   }
 
   const handleValidation = (event) => {
